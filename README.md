@@ -9,7 +9,7 @@ This plugin uses the following python packages:
 
 Install your Tesy boiler according to the manual. You will either need a fixed IP or the boiler device name on your network (likely "tesy").
 
-## Installation
+# Installation
 ```
 cd ~/domoticz/plugins
 git clone https://github.com/heggink/domoticz-tesy
@@ -24,7 +24,7 @@ The plugin will create the following 5 devices:
 - Temperature device showing the water temperature
 - Setpoint for setting the target water temperature when in manual mode
 
-TODO:
+# TODO:
 - timer schedules (anyone interested to help?)
 
 Please note that there are multiple firmwares out there not all of which support the local API.
