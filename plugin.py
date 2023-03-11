@@ -1,3 +1,4 @@
+#
 """
 <plugin key="TesyBoiler" name="Tesy Boiler Plugin" author="heggink" version="0.0.1">
     <params>
@@ -73,33 +74,33 @@ class BasePlugin:
             Domoticz.Debug("Tesy response: " + strData)
             resp = json.loads(strData)
 
-        if resp["pwr"] == "1":
-            sval = "On"
-            nval = 1
-        else:
-            sval = "Off"
-            nval = 0
-        Devices[1].Update(nValue=nval, sValue=sval)
+            if resp["pwr"] == "1":
+                sval = "On"
+                nval = 1
+            else:
+                sval = "Off"
+                nval = 0
+            Devices[1].Update(nValue=nval, sValue=sval)
 
-        if resp["bst"] == "1":
-            sval = "On"
-            nval = 1
-        else:
-            sval = "Off"
-            nval = 0
+            if resp["bst"] == "1":
+                sval = "On"
+                nval = 1
+            else:
+                sval = "Off"
+                nval = 0
+            Devices[2].Update(nValue=nval, sValue=sval)
 
-        Devices[2].Update(nValue=nval, sValue=sval)
-        if resp["mode"] == "0":
-            sval = "00"
-        elif resp["mode"] == "1":
-            sval = "10"
-        elif resp["mode"] == "4":
-            sval = "20"
+            if resp["mode"] == "0":
+                sval = "00"
+            elif resp["mode"] == "1":
+                sval = "10"
+            elif resp["mode"] == "4":
+                sval = "20"
 
-        Devices[3].Update(nValue=Devices[3].nValue, sValue=sval)
-        Devices[4].Update(nValue=0, sValue=resp["tmpC"])
-        Devices[5].Update(nValue=0, sValue=resp["tmpT"])
-        Domoticz.Debug("Leaving on start")
+            Devices[3].Update(nValue=Devices[3].nValue, sValue=sval)
+            Devices[4].Update(nValue=0, sValue=resp["tmpC"])
+            Devices[5].Update(nValue=0, sValue=resp["tmpT"])
+            Domoticz.Debug("Leaving on start")
 
     def onConnect(self, Connection, Status, Description):
         Domoticz.Debug("onConnect called")
@@ -228,7 +229,7 @@ class BasePlugin:
     def onHeartbeat(self):
 
         Domoticz.Debug("onHeartbeat called ")
-#       heartbeat is every 10 seconds, pollinterval is in minutes
+#	heartbeat is every 10 seconds, pollinterval is in minutes 
         self.heartbeats += 1
         Domoticz.Debug("onHeartbeat called " + str(self.heartbeats))
 
@@ -247,24 +248,33 @@ class BasePlugin:
                 Domoticz.Debug("Tesy response: " + strData)
                 resp = json.loads(strData)
 
-            if resp["pwr"] == "1":
-                sval = "On"
-                nval = 1
-            else:
-                sval = "Off"
-                nval = 0
-            Devices[1].Update(nValue=nval, sValue=sval)
+                if resp["pwr"] == "1":
+                    sval = "On"
+                    nval = 1
+                else:
+                    sval = "Off"
+                    nval = 0
+                Devices[1].Update(nValue=nval, sValue=sval)
 
-            if resp["bst"] == "1":
-                sval = "On"
-                nval = 1
-            else:
-                sval = "Off"
-                nval = 0
-            Devices[2].Update(nValue=nval, sValue=sval)
+                if resp["bst"] == "1":
+                    sval = "On"
+                    nval = 1
+                else:
+                    sval = "Off"
+                    nval = 0
+                Devices[2].Update(nValue=nval, sValue=sval)
 
-            Devices[4].Update(nValue=0, sValue=resp["tmpC"])
-            Devices[5].Update(nValue=0, sValue=resp["tmpT"])
+                Devices[4].Update(nValue=0, sValue=resp["tmpC"])
+                Devices[5].Update(nValue=0, sValue=resp["tmpT"])
+
+                if resp["mode"] == "0":
+                    sval = "00"
+                elif resp["mode"] == "1":
+                    sval = "10"
+                elif resp["mode"] == "4":
+                    sval = "20"
+
+                Devices[3].Update(nValue=Devices[3].nValue, sValue=sval)
 
 global _plugin
 _plugin = BasePlugin()
