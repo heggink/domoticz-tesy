@@ -165,7 +165,7 @@ class BasePlugin:
                 Domoticz.Debug("Tesy command response received " + strData)
                 resp = json.loads(strData)
                 if resp["bst"] != str(nval):
-                    Domoticz.Error("Error switching Tesy Power")
+                    Domoticz.Error("Error switching Tesy Boost")
                 else:
                     UpdateDevice(Unit, nval, sval, 0)
 
@@ -196,7 +196,7 @@ class BasePlugin:
                 resp = json.loads(strData)
 
                 if resp["mode"] != str(nval):
-                        Domoticz.Error("Error switching Tesy Power")
+                    Domoticz.Error("Error switching Tesy Power: " + str(resp["mode"]))
 
         elif Unit == 5:
             sval = round(Level)
@@ -254,7 +254,8 @@ class BasePlugin:
                 else:
                     sval = "Off"
                     nval = 0
-                Devices[1].Update(nValue=nval, sValue=sval)
+#                Devices[1].Update(nValue=nval, sValue=sval)
+                UpdateDevice(1, nval, sval, 0)
 
                 if resp["bst"] == "1":
                     sval = "On"
@@ -262,7 +263,8 @@ class BasePlugin:
                 else:
                     sval = "Off"
                     nval = 0
-                Devices[2].Update(nValue=nval, sValue=sval)
+#                Devices[2].Update(nValue=nval, sValue=sval)
+                UpdateDevice(2, nval, sval, 0)
 
                 Devices[4].Update(nValue=0, sValue=resp["tmpC"])
                 Devices[5].Update(nValue=0, sValue=resp["tmpT"])
