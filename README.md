@@ -19,7 +19,7 @@ sudo service domoticz.sh restart
 Add the Tesy hardware to domoticz. Fill in IP or device name.
 The plugin will create the following 5 devices:
 - Power switch
-- Boost switch
+- Boost switch (note that if the boiler is off, Boost cannot be turned on)
 - Selector switch allowing to switch between Manual, Eco and Program
 - Temperature device showing the water temperature
 - Setpoint for setting the target water temperature when in manual mode
