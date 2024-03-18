@@ -62,7 +62,7 @@ class BasePlugin:
             Domoticz.Device(Name="Tesy SetPoint", Unit=5, TypeName="Set Point", Used=1).Create()
             Domoticz.Log("Devices created.")
 
-        req="http://tesy/api?name=_all"
+        req="http://" + self.TesyIP + "/api?name=_all"
         try:
             resp = urllib.request.urlopen(req).read()
         except HTTPError as e:
@@ -236,7 +236,7 @@ class BasePlugin:
         if (self.heartbeats / 6) >= self.pollInterval:
             self.heartbeats = 0
             Domoticz.Debug("onHeartbeat check Tesy")
-            req="http://tesy/api?name=_all"
+            req="http://" + self.TesyIP + "/api?name=_all"
             try:
                 resp = urllib.request.urlopen(req).read()
             except HTTPError as e:
